@@ -1,0 +1,11 @@
+<div class="recs">
+  <h2>Recommendations</h2>
+  <div class="grid">
+    <mat-card *ngFor="let r of recs" class="rec-card">
+      <mat-card-content>
+        <p class="score">Score: {{ r.score | number:'1.2-2' }}</p>
+        <button mat-stroked-button color="primary" [routerLink]="['/media', r.mediaId]">View item</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

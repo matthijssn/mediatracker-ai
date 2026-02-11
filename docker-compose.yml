@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6
+    volumes:
+      - mongo-data:/data/db
+    ports: ['27017:27017']
+
+  mongo-express:
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+    depends_on: ['mongo']
+    ports: ['8081:8081']
+
+  mediatracker:
+    build: .
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/mediatracker
+      - NODE_ENV=production
+    depends_on: ['mongo']
+    ports:
+      - '80:80'
+      - '3000:3000'
+      - '4000:4000'
+      - '4100:4100'
+      - '4200:4200'
+
+volumes:
+  mongo-data:

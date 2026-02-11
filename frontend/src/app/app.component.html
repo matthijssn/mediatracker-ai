@@ -1,0 +1,15 @@
+<mat-sidenav-container class="app-container">
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/media">Collection</a>
+      <a mat-list-item routerLink="/recommendations">Recommendations</a>
+      <a mat-list-item routerLink="/settings">Settings</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">MediaTracker</mat-toolbar>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

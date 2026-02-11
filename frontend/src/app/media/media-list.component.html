@@ -1,0 +1,20 @@
+<div class="media-list">
+  <h2>Your Collection</h2>
+  <div class="grid">
+    <mat-card *ngFor="let m of items" class="media-card">
+      <mat-card-header>
+        <div mat-card-avatar class="media-avatar"></div>
+        <mat-card-title>{{ m.title }}</mat-card-title>
+        <mat-card-subtitle>{{ m.category }}</mat-card-subtitle>
+      </mat-card-header>
+      <img *ngIf="m.externalData?.data?.sources?.[0]?.result?.Poster || m.externalData?.data?.sources?.[0]?.result?.poster_path" class="poster" [src]="m.externalData?.data?.sources?.[0]?.result?.Poster || ('https://image.tmdb.org/t/p/w300' + m.externalData?.data?.sources?.[0]?.result?.poster_path)" alt="poster" />
+      <mat-card-content>
+        <p class="tags">{{ m.tags?.slice(0,3)?.join(', ') }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <app-rating [value]="getRating(m)" (valueChange)="onRate(m, $event)"></app-rating>
+        <button mat-stroked-button color="primary" (click)="view(m)">View</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

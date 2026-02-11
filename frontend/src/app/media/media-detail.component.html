@@ -1,0 +1,35 @@
+<div class="media-detail" *ngIf="item">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ item.title }}</mat-card-title>
+      <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="meta-grid">
+        <div class="poster">
+          <img *ngIf="external?.data?.sources?.[0]?.result?.Poster" [src]="external.data.sources[0].result.Poster" alt="poster" />
+          <img *ngIf="external?.data?.sources?.[0]?.result?.poster_path" [src]="'https://image.tmdb.org/t/p/w300' + external.data.sources[0].result.poster_path" alt="poster" />
+        </div>
+        <div class="info">
+          <p *ngIf="item.notes">{{ item.notes }}</p>
+          <div *ngIf="item.metadata">Metadata: <pre>{{ item.metadata | json }}</pre></div>
+          <p *ngIf="external">Fetched: {{ external.fetchedAt | date:'short' }}</p>
+          <button mat-raised-button color="primary" (click)="refresh()">Refresh External</button>
+        </div>
+      </div>
+
+      <section class="external" *ngIf="external?.data?.sources">
+        <h3>External Sources</h3>
+        <div *ngFor="let s of external.data.sources" class="provider">
+          <h4>{{ s.provider }}</h4>
+          <div class="provider-content">
+            <div *ngIf="s.result.Title">Title: {{ s.result.Title }}</div>
+            <div *ngIf="s.result.overview">Overview: {{ s.result.overview }}</div>
+            <div *ngIf="s.result.Error">Error: {{ s.result.Error }}</div>
+          </div>
+        </div>
+      </section>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="!item">Loading...</div>

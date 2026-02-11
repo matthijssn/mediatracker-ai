@@ -1,0 +1,5 @@
+:host .media-list{ max-width:1200px; margin:0 auto }
+.grid{ display:flex; flex-wrap:wrap; gap:16px }
+.media-card{ width:260px }
+.poster{ width:100%; height:auto; object-fit:cover }
+.tags{ color:rgba(0,0,0,0.6); font-size:0.9rem }

@@ -1,0 +1,21 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service: [services/media-service, services/recommendation-service, services/preferences-service, services/api-gateway, frontend]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install & build
+        working-directory: ${{ matrix.service }}
+        run: |
+          if [ -f package.json ]; then npm ci; fi
+          if [ -f tsconfig.json ]; then npm run build --if-present; fi

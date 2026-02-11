@@ -1,0 +1,9 @@
+// frontend/src/styles/_themes.scss (simple theme entry)
+@import 'styles/_themes.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body { font-family: 'Roboto', sans-serif; margin:0; background: var(--bg); color: var(--text); }
+
+.mat-card{ border-radius:12px; box-shadow: 0 6px 18px rgba(2,6,23,0.08) }
+
