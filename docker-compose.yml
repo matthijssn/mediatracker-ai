@@ -3,7 +3,7 @@ services:
   mongo:
     image: mongo:6
     volumes:
-      - mongo-data:/data/db
+      - mongo_data:/data/db
     ports: ['27017:27017']
 
   mongo-express:
@@ -27,4 +27,4 @@ services:
       - '4200:4200'
 
 volumes:
-  mongo-data:
+  mongo_data:
