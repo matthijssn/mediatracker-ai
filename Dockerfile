@@ -31,10 +31,10 @@ COPY services/preferences-service/src ./services/preferences-service/src
 COPY services/api-gateway/tsconfig.json ./services/api-gateway/
 COPY services/api-gateway/src ./services/api-gateway/src
 
-RUN cd services/media-service && npm run build
-RUN cd services/recommendation-service && npm run build
-RUN cd services/preferences-service && npm run build
-RUN cd services/api-gateway && npm run build
+RUN cd services/media-service && (npm run build || npx tsc -p .)
+RUN cd services/recommendation-service && (npm run build || npx tsc -p .)
+RUN cd services/preferences-service && (npm run build || npx tsc -p .)
+RUN cd services/api-gateway && (npm run build || npx tsc -p .)
 
 # Stage 2: Build Angular frontend
 FROM node:18-alpine AS frontend-build
